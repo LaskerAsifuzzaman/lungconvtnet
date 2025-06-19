@@ -30,7 +30,7 @@ Respiratory ailments, especially pneumonia, demand advanced diagnostic tools for
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/lungconvtnet.git
+git clone https://github.com/LaskerAsifuzzaman/lungconvtnet.git
 cd lungconvtnet
 ```
 
@@ -63,13 +63,13 @@ python main.py --mode train --config config.yaml
 ### Evaluating the Model
 
 ```bash
-python main.py --mode evaluate --model_path path/to/model.h5 --config config.yaml
+python main.py --mode evaluate --model_path experiments/lungconvt_baseline/models/lungconvt_final.h5 --config config.yaml
 ```
 
 ### Generating Explanations
 
 ```bash
-python main.py --mode explain --model_path path/to/model.h5 --image_path path/to/image.jpg
+python main.py --mode explain --model_path experiments/lungconvt_baseline/models/lungconvt_final.h5 --image_path path/to/image.jpg
 ```
 
 ## 📁 Project Structure
