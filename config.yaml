@@ -1,0 +1,117 @@
+# LungConVT Configuration File
+# This file contains all hyperparameters and settings for training and evaluation
+
+# Data configuration
+data:
+  csv_path: "DB_modified_ImgDB.csv"
+  test_size: 0.2  # 80/20 train/test split
+  validation_size: 0.1  # Optional: create validation set from training data
+  
+  # Data augmentation parameters
+  augmentation:
+    shear_range: 0.1
+    zoom_range: 0.15
+    rotation_range: 5
+    width_shift_range: 0.1
+    height_shift_range: 0.05
+    horizontal_flip: false  # Not recommended for chest X-rays
+    rescale: 0.00392157  # 1/255 normalization
+
+# Model configuration
+model:
+  input_size: [256, 256]  # Image dimensions
+  n_classes: 4  # COVID-19, Normal, Pneumonia-Bacterial, Pneumonia-Viral
+  
+  # Architecture parameters
+  architecture:
+    initial_filters: 32
+    transformer_layers: 2
+    num_heads: [4, 8]  # For DHC-MHA blocks
+    dropout_rate: 0.2
+    activation: "swish"
+
+# Training configuration
+training:
+  batch_size: 16
+  epochs: 200
+  learning_rate: 0.001
+  use_class_weights: true  # Handle class imbalance
+  
+  # Optimizer parameters (Adam)
+  optimizer_params:
+    beta_1: 0.9
+    beta_2: 0.999
+    epsilon: 1.0e-08
+  
+  # Learning rate schedule
+  lr_schedule:
+    factor: 0.1
+    patience: 7
+    cooldown: 5
+    min_lr: 1.0e-10
+  
+  # Early stopping
+  early_stopping:
+    patience: 15
+    monitor: "val_loss"
+    restore_best_weights: true
+
+# Evaluation configuration
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+    - auc_roc
+  
+  # Visualization settings
+  visualization:
+    confusion_matrix: true
+    roc_curves: true
+    precision_recall_curves: true
+    save_plots: true
+    dpi: 300
+
+# Explainability configuration
+explainability:
+  methods:
+    - gradcam
+  gradcam:
+    layer_name: null  # Auto-detect last conv layer
+    alpha: 0.4  # Heatmap transparency
+    analyze_misclassifications: true
+    num_misclass_samples: 10
+
+# Hardware configuration
+hardware:
+  use_gpu: true
+  gpu_memory_limit: null  # Set to limit GPU memory (in MB)
+  num_workers: 4  # For data loading
+  use_mixed_precision: false  # Experimental
+
+# Reproducibility
+seed: 42
+deterministic: true  # May impact performance
+
+# Output configuration
+output_dir: "experiments"
+experiment_name: "lungconvt_baseline"  # Will be timestamped if null
+
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  save_logs: true
+  tensorboard: false  # Enable TensorBoard logging
+
+# Dataset paths (update according to your setup)
+paths:
+  train_images: null  # If images are in separate directory
+  test_images: null
+  external_test: null  # For additional test sets
+
+# Advanced settings
+advanced:
+  cache_dataset: false  # Cache preprocessed images
+  prefetch_buffer: 2  # tf.data.AUTOTUNE
+  num_parallel_calls: 4  # tf.data.AUTOTUNE
