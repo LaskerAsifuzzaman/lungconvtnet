@@ -2,6 +2,7 @@
 
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![TensorFlow](https://img.shields.io/badge/tensorflow-2.10%2B-orange)](https://www.tensorflow.org/)
+[![DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.patcog.2025.112150-blue)](https://doi.org/10.1016/j.patcog.2025.112150)
 
 ## 🔬 Abstract
 
@@ -16,6 +17,15 @@ Respiratory ailments, especially pneumonia, demand advanced diagnostic tools for
 - **Comprehensive Evaluation**: ROC curves, confusion matrices, and statistical tests
 - **Reproducible**: Fixed seeds and detailed environment specifications
 - **Production Ready**: Modular code structure with CLI interface
+
+---
+
+## 📄 Citation & Resources
+- **Journal Paper (Pattern Recognition, Elsevier)**: [https://doi.org/10.1016/j.patcog.2025.112150](https://doi.org/10.1016/j.patcog.2025.112150)  
+- **ScienceDirect Link**: [https://www.sciencedirect.com/science/article/abs/pii/S0031320325008106](https://www.sciencedirect.com/science/article/abs/pii/S0031320325008106)  
+- **DOI**: `10.1016/j.patcog.2025.112150`  
+- **Source Code**: [GitHub Repository Link](https://github.com/LaskerAsifuzzaman/lungconvtnet)
+
 
 
 ## Quick Start
@@ -195,3 +205,4 @@ pip install -r requirements.txt --no-cache-dir
 - Medical imaging community for datasets
 - TensorFlow and Keras teams
 - Vision Transformer and PulmoNetX papers for inspiration
+
